@@ -1,0 +1,556 @@
+﻿
+
+@{
+    ViewBag.Title = "HomePage";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<style>
+    div .carousel-inner img {
+        width: 100%;
+        height: 91.5vh;
+    }
+
+    span {
+        text-decoration: line-through;
+    }
+
+    .cards-wrapper {
+        display: flex;
+    }
+
+    .card {
+        margin: 0 .5em;
+        line-height: normal;
+        width: 230px;
+        height: 450px;
+    }
+
+        .card img {
+            height: 200px
+        }
+
+    .card2 img {
+        border-radius: 75%;
+        width: 240px;
+        height: 200px;
+        margin: 30px;
+    }
+
+    .card-2 {
+        text-align: center;
+        font-family: 'Caveat', cursive;
+        font-size: 35px;
+    }
+
+    .authors {
+        text-align: center;
+        font-family: 'Dancing Script', cursive;
+        font-size: 60px;
+        text-shadow: 2px red;
+    }
+</style>
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide
+     ">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="~/Images/Book Mock-Up _ Dust Jacket Edition.jpg" class="d-block w-100 h-80 img-fluid" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br />
+<br />
+<br />
+
+
+<!--Second carsouel for cards-->
+
+
+<div id="carouselExample" class="carousel slide">
+
+    <p class="authors">Best Sellers!</p>  <br>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="~/Images/Book cover design for Stories of Hope A5 landscape book.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Alchemist</h5> <br>
+                        <p class="card-text">Paulo Coelho</p>
+                        <p>Rs.150 &nbsp; <span>Rs.400</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/Images/Book cover design for Stories of Hope A5 landscape book.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Psychology of Money</h5> <br>
+                        <p class="card-text">Morgan Housel</p>
+                        <p>Rs.240 &nbsp; <span>Rs.350</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                        &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">It Starts With Us</h5> <br>
+                        <p class="card-text">Colleen Hoover</p>
+                        <p>Rs.360 &nbsp; <span>Rs.620</span></p>
+                        <a class="btn btn-primary" (click)="buy()">Buy</a>
+                        &nbsp;&nbsp;
+                        <a class="btn btn-primary" (click)="collin()">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Midnight Library</h5> <br>
+                        <p class="card-text">Matt Haig</p>
+                        <p>Rs.220 &nbsp; <span>Rs.450</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b4.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Silent Patient</h5> <br>
+                        <p class="card-text">Alex Michaelides</p>
+                        <p>Rs.450 &nbsp; <span>Rs.700</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b9.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Death</h5> <br>
+                        <p class="card-text">Sadguru</p>
+                        <p>Rs.500 &nbsp; <span>Rs.850</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="~/assets/img/b5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Can't Hurt Me</h5> <br>
+                        <p class="card-text">David Goggins.</p>
+                        <p>Rs.320 &nbsp; <span>Rs.400</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">And Then There Were None</h5> <br>
+                        <p class="card-text">Agatha Christie</p>
+                        <p>Rs.120 &nbsp; <span>Rs.250</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Zero to One</h5> <br>
+                        <p class="card-text">Peter Theil</p>
+                        <p>Rs.300 &nbsp; <span>Rs.500</span></p>
+                        <a class="btn btn-primary" (click)="buy()">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary" (click)="zero()">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/10.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Monk who Sold this Ferrari</h5> <br>
+                        <p class="card-text">Robin Sharma</p>
+                        <p>Rs.200 &nbsp; <span>Rs.350</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/11.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Autobiography of Yogi</h5> <br>
+                        <p class="card-text">Paramahansa Yogananda</p>
+                        <p>Rs.1000 &nbsp; <span>Rs.1500</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/12.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Atomic Habits</h5> <br>
+                        <p class="card-text">James Clear</p>
+                        <p>Rs.380 &nbsp; <span>Rs.450</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="~/assets/img/b6.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Secret</h5>  <br>
+                        <p class="card-text">Rhonde</p>
+                        <p>Rs.500 &nbsp; <span>Rs.700</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b7.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Where the Crawdads Sing</h5> <br>
+                        <p class="card-text">Delia Owens</p>
+                        <p>Rs.450 &nbsp; <span>Rs.600</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b8.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Hobbit</h5>  <br>
+                        <p class="card-text">J.R.R.Tolkien</p>
+                        <p>Rs.1200 &nbsp; <span>Rs.1500</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b10.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Think Again</h5>  <br>
+                        <p class="card-text">Adam Grant</p>
+                        <p>Rs.300 &nbsp; <span>Rs.700</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b11.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Will</h5> <br>
+                        <p class="card-text">Will Smith</p>
+                        <p>Rs.1110 &nbsp; <span>Rs.1300</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/b12.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gone Girl</h5> <br>
+                        <p class="card-text">Gillian Flynn</p>
+                        <p>Rs.460 &nbsp; <span>Rs.650</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<hr>
+<br>
+
+
+
+<div id="carousel1" class="carousel slide">
+
+    <p class="authors">Award Winners!</p>  <br>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="~/assets/img/w1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Plague</h5> <br>
+                        <p class="card-text">Albert Camus</p>
+                        <p>Rs.500 &nbsp; <span>Rs.700</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w2.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Seven Moons Of Maali</h5> <br>
+                        <p class="card-text">Shehan Karunatilaka</p>
+                        <p>Rs.200 &nbsp; <span>Rs.450</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Love of W.E.B.Du Bois</h5> <br>
+                        <p class="card-text">HF jeffers</p>
+                        <p>Rs.380 &nbsp; <span>Rs.460</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w12.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">In a Free State</h5> <br>
+                        <p class="card-text">V.S. Naipul</p>
+                        <p>Rs.250 &nbsp; <span>Rs.350</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w4.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Book of Form and Emptiness</h5> <br>
+                        <p class="card-text">Ruth Ozeki</p>
+                        <p>Rs.750 &nbsp; <span>Rs.1200</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Trust</h5> <br>
+                        <p class="card-text">Hernan Diaz</p>
+                        <p>Rs.380 &nbsp; <span>Rs.560</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="cards-wrapper">
+                <div class="card">
+                    <img src="~/assets/img/w6.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Wrond End of the Telescope</h5> <br>
+                        <p class="card-text">Rabih alameddine</p>
+                        <p>Rs.400 &nbsp; <span>Rs.550</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w7.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Skinship </h5> <br>
+                        <p class="card-text">Yoon Choi</p>
+                        <p>Rs.250 &nbsp; <span>Rs.300</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w8.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Thousand Crimes of Ming Tsu</h5> <br>
+                        <p class="card-text">Tom Lin</p>
+                        <p>Rs.500 &nbsp; <span>Rs.700</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w11.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The God of Small Things</h5> <br>
+                        <p class="card-text">Arundhati Roy</p>
+                        <p>Rs.120 &nbsp; <span>Rs.250</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w10.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The White Tiger</h5> <br>
+                        <p class="card-text">Aravind Saga</p>
+                        <p>Rs.220 &nbsp; <span>Rs.300</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="~/assets/img/w9.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Five wounds</h5> <br>
+                        <p class="card-text">KL Quade</p>
+                        <p>Rs.450 &nbsp; <span>Rs.550</span></p>
+                        <a href="#" class="btn btn-primary">Buy</a> &nbsp;&nbsp;
+                        <a class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<hr>
+<br>
+
+<div id="carousel2" class="carousel slide">
+
+    <p class="authors">Featured Author!</p>
+    <div class="carousel-inner h-50">
+        <div class="carousel-item active">
+
+            <div class="cards-wrapper">
+                <div class="card2">
+                    <img src="~/assets/img/a7.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">J.K.Rowling</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a8.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">George Orwell</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a13.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">R.K.Narayan</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a10.webp" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Edgar Allen Poe</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a11.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Ian Fleming</h5>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="carousel-item ">
+            <div class="cards-wrapper">
+                <div class="card2">
+                    <img src="~/assets/img/a1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Jeffery Archer</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Stephen King</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Agatha Christie</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a6.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Issac Asimov</h5>
+
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="~/assets/img/a5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-2">Yuval Noah Harari</h5>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

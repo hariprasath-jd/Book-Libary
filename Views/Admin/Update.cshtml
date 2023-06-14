@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    label {
+        margin: 5px 10px;
+    }
+
+    #main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #center {
+        margin-top: 20px;
+        padding: 20px;
+        width: 75%;
+        height: max-content;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 28px;
+    }
+</style>
+
+<div style="max-height: 700px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
+    <div id="main">
+        <div id="center">
+            @using (Html.BeginForm("Updated", "Admin", FormMethod.Post))
+            {<div class="container text-center">
+                    <div class="row justify-content-md-center">
+                        <div class="col"></div>
+                        <div class="col-content"><p>Update Product</p></div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-2">@Html.Label("id")</div>
+                    <div class="col">
+                        @Html.TextBox("id", ViewData["id"].ToString(), new { id = "id",style = "width:80px;", placeholder = "disabled input", Readonly = true, Class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-2">@Html.Label("Product Name")</div>
+                    <div class="col">
+                        @Html.TextBox("pName", ViewData["PName"].ToString(), new { id="pName",style = "width:250px;", Class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-2">@Html.Label("Description")</div>
+                    <div class="col">
+                        @Html.TextArea("pDes", ViewData["PDescription"].ToString(), new { id= "pDes", style = "width:150px;", Class = "form-control w-100", Rows = 3 })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-2">@Html.Label("Price")</div>
+                    <div class="col">
+                        @Html.TextBox("pPrice", ViewData["Pprice"].ToString(), new { id= "pPrice", style = "width:80px;", Class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="container text-center">
+                    <div class="row justify-content-md-center">
+                        <div class="col"></div>
+                        <div class="col">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" style="width:150px;" data-bs-target="#staticBackdrop">
+                                Update
+                            </button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+                <br />
+                <div class="container text-center">
+                    <div class="row justify-content-md-center">
+                        <div class="col"></div>
+                        <div class="col">
+                            @Html.ActionLink("<<Back", "Products")
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Conformation</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

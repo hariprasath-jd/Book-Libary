@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "BasicInfo";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+}
+
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center border g-lg-5 p-4  bg-dark mt-1" style="--bs-bg-opacity: .8;border-radius:15px;">
+        @using (Html.BeginForm("InfoRegister","Login",FormMethod.Post))
+        {
+        <div class="row ">
+            <div class="col-md-6">
+                <h4>Basic Info</h4>
+            </div>
+        </div>
+
+        <hr style="width:150px;" />
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label" for="FirstName">First Name</label>
+                @Html.TextBox("FirstName", "", new { id = "FirstName", placeholder = "eg :- John", Class = "form-control" })
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="LastName">Last Name</label>
+                @Html.TextBox("LastName", "", new { id = "LastName", placeholder = "eg :- Wick", Class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="MobileNo">Mobile No.</label>
+                @Html.TextBox("MobileNo", "", new { id = "MobileNo", placeholder = "955543....", Class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <label for="Gender" class="form-label">Gender</label>
+                @Html.DropDownList("Gender", new List<SelectListItem> { new SelectListItem { Text = "Male", Value = "1" }, new SelectListItem { Text = "Female", Value = "2" } }, "Selct Gender", new { Class = "form-select" })
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                @Html.TextBox("inputAddress", "", new { id = "inputAddress", Class = "form-control", placeholder = "1234 Main St" })
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">Address 2</label>
+                @Html.TextBox("inputAddress2", "", new { id = "inputAddress2", Class = "form-control", placeholder = "Apartment, studio, or floor" })
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                @Html.TextBox("inputCity", "", new { id = "inputCity", Class = "form-control", placeholder = "eg :- Denmark" })
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                @Html.TextBox("inputState", "", new { id = "inputState", Class = "form-control", placeholder = "eg :- New York" })
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip</label>
+                @Html.TextBox("inputZip", "", new { id = "inputZip", Class = "form-control", placeholder = "625531" })
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-25 float-end">Save</button>
+            </div>
+        </div>
+        @Html.
+        }
+        
+    </div>
+</div>
+
+<div class="b-example-divider"></div>

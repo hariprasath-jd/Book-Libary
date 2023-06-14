@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('Images/Icon Grid.svg');
+        background-repeat: no-repeat;
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+    }
+</style>
+
+<div class="b-example-divider"></div>
+<div class="b-example-divider"></div>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5 bg-dark mt-1" style="--bs-bg-opacity: .8;border-radius:15px;">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Shortly About Us</h1>
+            <p class="col-lg-10 fs-4"> Book.coms is a platform where you can browse, borrow, and read thousands of books from different genres, authors, and languages. Whether you are looking for fiction or non-fiction, classics or contemporary, romance or thriller, you will find something to suit your taste and mood. Book.coms is more than just a library.  All you need is an internet connection and a valid membership.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <div class="p-4 p-md-5 border rounded-3 bg-dark" style="--bs-bg-opacity: .5;">
+                @using (Html.BeginForm("RegisterNextForm", "Login", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3">
+                        @Html.TextBox("Username", "", new { id = "UserName", placeholder = "name@example.com", Class = "form-control" })
+                        <label for="UserName">Email address</label>
+                        <p style="color:red;">@ViewData["EmailValid"].ToString()</p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.TextBox("Password", "", new { id = "PassWord", placeholder = "password", Class = "form-control", Type = "password" })
+                        <label for="PassWord">Password</label>
+                        <p style="color:red;">@ViewData["passLength"].ToString()</p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.TextBox("ConfirmPassword", "", new { id = "ConfirmPassWord", placeholder = "Confirm password", Class = "form-control", Type = "password" })
+                        <label for="PassWord">Re-Type Password</label>
+                        <p style="color:red;">@ViewData["Re-Password"].ToString()</p>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                    <hr class="my-4">
+                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="b-example-divider"></div>

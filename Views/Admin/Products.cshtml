@@ -1,0 +1,78 @@
+﻿@model List<Book_Libary.Models.Inventory.Product>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    //List<Book_Libary.Models.Inventory.Genre> genre = ViewBag.Data;
+
+}
+
+<style>
+    .def {
+        width: 40%;
+    }
+</style>
+
+
+<div style="max-height: 700px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
+
+    <div class="border rounded m-1" style="box-shadow: 0px 0px 8px 0px black">
+        <h2 class="mx-5 my-3">All Product</h2>
+        <div class="row g-3 justify-content-md-center">
+            @using (Html.BeginForm("SortProduct", "Admin", FormMethod.Post))
+            {
+                <div class="row p-3 ps-5">
+                    <div class="col-3 m-2">
+                        <label for="Genre">Genre</label>
+                        @Html.DropDownList("Genre", new SelectList(ViewBag.Genre, "Id","GerneType"), "Select Genre", new { @class = "form-select m-1" })
+                    </div>
+                    <div class="col-3 m-2">
+                        <label for="Author">Author</label>
+                        @Html.DropDownList("Author", new SelectList(ViewBag.Auhtor, "Id", "AuthorName"), "Select Auhtor", new { @class = "form-select m-1" })
+                    </div>
+                    <div>
+                        <button type="submit" id="submit" class="btn btn-success mt-2 ms-2">Search</button>
+                        <a href="/NewProduct" class="btn btn-warning mt-2 ms-2 me-5 float-end">Add New Product</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!--Modal Form To Add New Product-->
+
+
+        <div class=" row justify-content-md-center ">
+            <div class=""></div>
+            <table class="table border rounded col mx-4" style="width:95%;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Product Type</th>
+                        <th scope="col">Product Description</th>
+                        <th scope="col">Product Price</th>
+                        <th scope="col">Product Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Book_Libary.Models.Inventory.Product i in Model)
+                        {
+                            <tr>
+                                <td scope="col">@i.Id</td>
+                                <td>@i.ProductName</td>
+                                <td class="def">@i.ProductDescription</td>
+                                <td>@i.ProductPrice</td>
+                                <td>
+                                    @Html.ActionLink("Update", "Update", new { Id = i.Id, pname = i.ProductName, description = i.ProductDescription, price = i.ProductPrice })  ||
+                                    @Html.ActionLink("Delete", "DeleteId", new { Id = i.Id })
+                                </td>
+                            </tr>
+                        }
+                    
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

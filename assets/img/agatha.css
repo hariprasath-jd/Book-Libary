@@ -1,0 +1,14 @@
+h3{
+    text-shadow: 2px 2px red;
+}
+h3::first-letter{
+    font-size:75px;
+    color: red;
+    text-shadow:3px 3px black;
+}
+
+.img2 img{
+    width:200px;
+    height:250px;
+  
+}

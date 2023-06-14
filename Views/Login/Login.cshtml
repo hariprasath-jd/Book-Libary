@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+
+
+}
+
+<div class="b-example-divider"></div>
+<div class="b-example-divider"></div>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5 bg-dark mt-1" style="--bs-bg-opacity: .8;border-radius:15px;">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Read More,<br /> Learn More,<br /> Grow More</h1>
+            <p class="col-lg-10 fs-4"> Books are the best way to expand your horizons and enrich your mind. That’s why we created this online library for you. Here you can access a huge variety of books in different languages and formats, and learn new things every day.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <div class="p-4 p-md-5 border rounded-3 bg-dark" style="--bs-bg-opacity: .5;">
+                @using (Html.BeginForm("LoginValidate", "Login", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3">
+                        @Html.TextBox("Username","", new { id="UserName", placeholder= "name@example.com", Class = "form-control" })
+                        <label for="UserName">Email address</label>
+                        <p style="color:red;">@ViewData["UserWarning"].ToString()</p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.TextBox("Password", "", new { id = "PassWord", placeholder = "password", Class = "form-control",Type="password" })
+                        <label for="PassWord">Password</label>
+                        <p style="color:red;">@ViewData["PasswdWarning"].ToString()</p>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-success" type="submit">Sign In</button>
+                    
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="b-example-divider"></div>
+
