@@ -67,7 +67,7 @@ namespace Book_Libary.Controllers
             }
         }
 
-        [Route("Products")]
+        [Route("ViewProducts")]
         public ActionResult Products()
         {
             var data = (from supplier in context.Genres select supplier).ToList();
@@ -160,5 +160,49 @@ namespace Book_Libary.Controllers
 
             return View();
         }
+
+        [Route("Supplier")]
+        public ActionResult ViewSupplier()
+        {
+            var supp = (from a in context.Suppliers select a).ToList();
+            return View(supp);
+        }
+
+        [Route("AddSupplier")]
+        public ActionResult AddSupplier()
+        {
+            ViewBag.Bool = false;
+            return View();
+        }
+
+        public ActionResult InsertSupplier(FormCollection form)
+        {
+            try
+            {
+                string supname = form["SupplierName"];
+                string supemail = form["SupplierEmail"];
+                string supmobile = form["SupplierMobile"];
+                string supdes = form["SupplierDescription"];
+                if ((supdes == "")||(supemail == "")||(supmobile == "")||(supname == "")) {
+                    ViewBag.Bool = true;
+                    return View("AddSupplier");
+                }
+                else
+                {
+                    Supplier supplier = new Supplier() { SupplierName = supname, SupplierEmail = supemail, SupplierPhone = supmobile, SupplierDescription = supdes };
+                    context.Suppliers.Add(supplier);
+                    context.SaveChanges();
+                    ViewBag.Bool = false;
+                    return View("AddSupplier");
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Bool = true;
+                return View("AddSupplier");
+            }
+        }
+
+
     }
 }

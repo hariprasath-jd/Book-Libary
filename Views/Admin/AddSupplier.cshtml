@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "AddSupplier";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg><div style="max-height: 700px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
+    <h2 class="mx-5 my-3">Add Supplier</h2>
+    <div class="container col-xl-1 col-xxl-11 px-2 py35">
+        <div class="row align-items-center border g-lg-5 p-4  bg-secondary mt-1" style="border-radius:15px;">
+            @using (Html.BeginForm("InsertSupplier", "Admin", FormMethod.Post))
+            {
+                <div class="row ">
+                    <div class="col-md-6">
+                        <h4>Product Details</h4>
+                    </div>
+                </div>
+
+                <hr style="width:150px;" />
+                <div class="row g-3">
+                    <div class="col-2">
+                        <label class="form-label" for="SupplierName">Supplier Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBox("SupplierName", "", new { id = "SupplierName", placeholder = "Publisher Name", Class = "form-control" })
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-2">
+                        <label for="Price" class="SupplierEmail">Supplier Email</label>
+                    </div>
+                    <div class="col-md-3">
+
+                        @Html.TextBox("SupplierEmail", "", new { id = "SupplierEmail", Class = "form-control", placeholder = "example@gmail.com" })
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-2">
+                        <label for="Price" class="SupplierMobile">Supplier Mobile no.</label>
+                    </div>
+                    <div class="col-md-3">
+
+                        @Html.TextBox("SupplierMobile", "", new { id = "SupplierMobile", Class = "form-control", placeholder = "eg:- 98466*****" })
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <br />
+                    <div class="col-2">
+                        <label class="form-label" for="SupplierDescription">Supplier Description</label>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextArea("SupplierDescription", "", new { id = "SupplierDescription", placeholder = "eg :- About The Supplier", Class = "form-control", rows = "4" })
+                    </div>
+                </div>
+
+
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-12">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" style="width:150px;" data-bs-target="#staticBackdrop">
+                            Add
+                        </button>
+                        <button type="button" onclick="window.location.href='Supplier';" class="btn btn-danger ms-3">Cancel</button>
+                    </div>
+                </div>
+
+
+                if (ViewBag.Bool == true)
+                {
+
+
+                    <div class="mt-2" style="height:80px;">
+                        <div class="alert d-flex alert-danger alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" height="30" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill" /></svg>
+                            <div>
+                                Their is an error during the creation <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+                else { }
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Conformation</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+             }
+        </div>
+    </div>
+
+    @* Without AJAX(Asynchronous Javascript and XML) Partial load two drop downs
+       @{
+            List<SelectListItem> items = new List<SelectListItem>();
+            List<SelectListItem> items2 = new List<SelectListItem>();
+            string[] itemArray = { "Products", "Index", "Login" };
+            string[] itemArray2 = { "hello", "Add", "There" };
+
+            for (int i = 0; i < itemArray.Count(); i++)
+            {
+                items.Add(new SelectListItem
+                {
+                    Text = itemArray[i],
+                    Value = i.ToString()
+                }
+                );
+
+                items2.Add(new SelectListItem
+                {
+                    Text = itemArray2[i],
+                    Value = i.ToString()
+                }
+                );
+            }
+
+            ViewBag.CategoryID = items;
+            ViewBag.second = items2;
+        }
+        @Html.DropDownList("CategoryId", null, new { @onchange = "document.getElementById('second').value = this.value" })
+        @Html.DropDownList("second", null, new { id="second" })*@
+
+</div>
