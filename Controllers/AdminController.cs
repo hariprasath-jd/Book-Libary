@@ -3,7 +3,10 @@ using Book_Libary.Models.Inventory;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Security.Policy;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace Book_Libary.Controllers
 {
@@ -15,8 +18,16 @@ namespace Book_Libary.Controllers
         [Route("Index")]
         public ActionResult Index()
         {
-
-            return View();
+            if (Session["name"] != null)
+            {
+                ViewData["TotalUser"] = (from count in context.LoginDetails select count).Count();
+                ViewData["ToTalBooks"] = (from count in context.Products select count).Count();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [Route("Login")]
@@ -40,6 +51,7 @@ namespace Book_Libary.Controllers
                 {
                     if (info.AdminPassword == passwd)
                     {
+                        Session["name"] = userid;
                         Session["UserName"] = "";
                         return RedirectToAction("Index");
 
@@ -98,7 +110,7 @@ namespace Book_Libary.Controllers
                 return View("Products", data);
             }
 
-            if ((value1 != "") &&  (value2 != ""))
+            if ((value1 != "") && (value2 != ""))
             {
                 int authint = Convert.ToInt32(value2);
                 int genreint = Convert.ToInt32(value1);
@@ -161,6 +173,12 @@ namespace Book_Libary.Controllers
             return View();
         }
 
+
+        public ActionResult AddedProduct()
+        {
+            return View();
+        }
+
         [Route("Supplier")]
         public ActionResult ViewSupplier()
         {
@@ -183,7 +201,8 @@ namespace Book_Libary.Controllers
                 string supemail = form["SupplierEmail"];
                 string supmobile = form["SupplierMobile"];
                 string supdes = form["SupplierDescription"];
-                if ((supdes == "")||(supemail == "")||(supmobile == "")||(supname == "")) {
+                if ((supdes == "") || (supemail == "") || (supmobile == "") || (supname == ""))
+                {
                     ViewBag.Bool = true;
                     return View("AddSupplier");
                 }
@@ -202,6 +221,75 @@ namespace Book_Libary.Controllers
                 return View("AddSupplier");
             }
         }
+        public ActionResult UpdateSupplier(int id)
+        {
+            Supplier supplier = (from y in context.Suppliers where y.Id == id select y).First();
+            ViewData["id"] = supplier.Id;
+            ViewData["SupName"] = supplier.SupplierName;
+            ViewData["SupMobile"] = supplier.SupplierPhone;
+            ViewData["SupEmail"] = supplier.SupplierEmail;
+            ViewData["SupDescription"] = supplier.SupplierDescription;
+            return View();
+        }
+
+        public ActionResult UpdateResult(FormCollection form)
+        {
+            int id = Convert.ToInt32(form["Id"]);
+            string name = form["SupName"];
+            string mobile = form["SupMobile"];
+            string email = form["SupEmail"];
+            string Des = form["SupDescription"];
+            Supplier sup = new Supplier() { Id = id, SupplierName = name, SupplierPhone = mobile, SupplierEmail = email, SupplierDescription = Des };
+            context.Suppliers.Attach(sup);
+            context.Entry(sup).Property(x => x.SupplierName).IsModified = true;
+            context.Entry(sup).Property(x => x.SupplierPhone).IsModified = true;
+            context.Entry(sup).Property(x => x.SupplierEmail).IsModified = true;
+            context.Entry(sup).Property(x => x.SupplierDescription).IsModified = true;
+            context.SaveChanges();
+            return RedirectToAction("ViewSupplier");
+        }
+
+        [Route("Genre")]
+        public ActionResult ViewGenre()
+        {
+            ViewBag.Validation = false;
+            ViewBag.result = false;
+            var genre = (from g in context.Genres select g).ToList();
+            return View(genre);
+        }
+
+        public ActionResult AddGenre(FormCollection form)
+        {
+            string name = form["GenreName"];
+            string description = form["GenreDescription"];
+            if ((name != "") || (description != ""))
+            {
+                ViewBag.Validation = false;
+                ViewBag.result = true;
+                Genre genre = new Genre() { GerneType = name, GenreDescription = description };
+                context.Genres.Add(genre);
+                context.SaveChanges();
+                var genremodal = (from g in context.Genres select g).ToList();
+                return View("ViewGenre",genremodal);
+            }
+            else
+            {
+                ViewBag.result = false;
+                ViewBag.Validation = true;
+                var genremodal = (from g in context.Genres select g).ToList();
+                return View("ViewGenre", genremodal);
+            }
+        }
+
+        [Route("Author")]
+        public ActionResult ViewAuthor()
+        {
+            var auhtor = (from auth in context.Authors select auth).ToList();
+            return View(auhtor);
+        }
+
+
+
 
 
     }

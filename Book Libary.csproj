@@ -291,6 +291,9 @@
     <Content Include="Views\Admin\AddNewProduct.cshtml" />
     <Content Include="Views\Admin\ViewSupplier.cshtml" />
     <Content Include="Views\Admin\AddSupplier.cshtml" />
+    <Content Include="Views\Admin\UpdateSupplier.cshtml" />
+    <Content Include="Views\Admin\ViewGenre.cshtml" />
+    <Content Include="Views\Admin\ViewAuthor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

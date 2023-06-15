@@ -50,5 +50,6 @@ insert into Suppliers values('Colleen Hoover','7855487541','collenhover@gmail.co
 insert into Suppliers values('Haig Matt','986548754','haigmatt@gmail.com','self shiping and other details');
 insert into Suppliers values(' Penguin Books (India)','986548754','penguinbooks@gmail.com','Publishng House');
 
+update Suppliers set SupplierName='Colleen Hoover',SupplierPhone = '7855487541',SupplierEmail='collenhover@gmail.com',SupplierDescription='self shiping and other details' where Id=1;
 
 exec sp_help Products;
