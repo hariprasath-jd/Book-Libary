@@ -229,6 +229,7 @@
     <Content Include="Images\Book cover design for Stories of Hope A5 landscape book.jpg" />
     <Content Include="Images\Book Mock-Up _ Dust Jacket Edition.jpg" />
     <Content Include="Images\Here%27s the haunting cover of Adam Silvera%27s upcoming novel %27They Both Die At The End%27.jpg" />
+    <Content Include="Images\Hexagon.svg" />
     <Content Include="Images\How to find a cover designer for your self-published book - 99designs %281%29.png" />
     <Content Include="Images\How to find a cover designer for your self-published book - 99designs.png" />
     <Content Include="Images\Premium Vector _ Flyer book cover template layout in a4 size.jpg" />
@@ -294,6 +295,11 @@
     <Content Include="Views\Admin\UpdateSupplier.cshtml" />
     <Content Include="Views\Admin\ViewGenre.cshtml" />
     <Content Include="Views\Admin\ViewAuthor.cshtml" />
+    <Content Include="Views\Admin\AddAdmin.cshtml" />
+    <Content Include="Views\Admin\AdminWarning.cshtml" />
+    <Content Include="Views\Admin\PageNotAccessable.cshtml" />
+    <Content Include="Views\Admin\UpdateGenre.cshtml" />
+    <Content Include="Views\Admin\AddAuthor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -305,6 +311,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\Order\" />
     <Folder Include="Models\Payment\" />
+    <Folder Include="Uploaded_Cover_Image\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

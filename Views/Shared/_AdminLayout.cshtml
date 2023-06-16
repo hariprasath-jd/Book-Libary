@@ -20,15 +20,15 @@
         }
 
 
-        * {
+        div .no_scroll{
             scroll-behavior: smooth;
             overflow-y: scroll;
             -ms-overflow-style: none;
         }
 
-            *::-webkit-scrollbar {
-                display: none;
-            }
+        div .no_scroll::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -49,11 +49,11 @@
     <div class="row w-100">
         @if (@ViewBag.Title != "Login")
         {
-            <div class="col-md-auto ">
+            <div class="col-md-auto " style="border-top:1px solid white;">
                 <div style="float:left;height:93.1vh;">
                     <div class="d-flex flex-column flex-shrink-0 p-3 h-100 text-bg-dark" style="width: 200px;">
-                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <span class="fs-4 ms-3">Content</span>
+                        <a href="Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <span class="fs-6">Product Control</span>
                         </a>
                         <hr>
                         <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-dark w-75 rounded-5 d-flex  align-items-center mb-md-0 me-md-auto" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-dark); --bs-nav-pills-link-active-bg: var(--bs-white);">
@@ -70,13 +70,23 @@
                                 <button class="nav-link rounded-5" onclick="window.location.href='Genre';" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Genre</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Author</button>
+                                <button class="nav-link rounded-5" onclick="window.location.href='Author';" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Author</button>
                             </li>
                         </ul>
                         <hr>
-                        <div class="dropdown">
+                        <a href="Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <span class="fs-6">Admin Control</span>
+                        </a>
+                        <hr />
+                        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-dark w-75 rounded-5 d-flex  align-items-center mb-md-0 me-md-auto" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-dark); --bs-nav-pills-link-active-bg: var(--bs-white);">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link  rounded-5" onclick="window.location.href='AddAdmin';" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Add Admin</button>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="dropdown ">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="true">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <img src="~/Images/book.png" alt="" width="32" height="32" class="rounded-circle me-2">
                                 <strong>mdo</strong>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
@@ -84,7 +94,7 @@
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="Login">Sign out</a></li>
+                                <li><a class="dropdown-item" href="Logout">Sign out</a></li>
                             </ul>
                         </div>
                     </div>

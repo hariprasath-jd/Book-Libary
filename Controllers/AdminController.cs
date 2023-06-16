@@ -2,8 +2,11 @@
 using Book_Libary.Models.Inventory;
 using System;
 using System.Data.Entity.Infrastructure;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -26,20 +29,23 @@ namespace Book_Libary.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return View("PageNotAccessable");
             }
         }
 
         [Route("Login")]
         public ActionResult Login()
         {
+
             ViewData["AdminWarning"] = "";
             ViewData["AdminPasswdWarning"] = "";
             return View();
+
         }
 
         public ActionResult LoginValidate(FormCollection form)
         {
+
             string userid = form["Username"].ToString();
             string passwd = form["Password"].ToString();
 
@@ -52,6 +58,8 @@ namespace Book_Libary.Controllers
                     if (info.AdminPassword == passwd)
                     {
                         Session["name"] = userid;
+                        Session["_attri"] = info.AdminAttributte;
+                        Session.Timeout = 5;
                         Session["UserName"] = "";
                         return RedirectToAction("Index");
 
@@ -77,120 +85,204 @@ namespace Book_Libary.Controllers
                 ViewData["AdminPasswdWarning"] = "";
                 return View("Login");
             }
+
         }
 
         [Route("ViewProducts")]
         public ActionResult Products()
         {
-            var data = (from supplier in context.Genres select supplier).ToList();
-            var auth = (from author in context.Authors select author).ToList();
-            var prod = (from a in context.Products select a).ToList();
-            ViewBag.Auhtor = auth;
-            ViewBag.Genre = data;
+            if (Session["name"].ToString() != null)
+            {
+                var data = (from supplier in context.Genres select supplier).ToList();
+                var auth = (from author in context.Authors select author).ToList();
+                var prod = (from a in context.Products select a).ToList();
+                ViewBag.Auhtor = auth;
+                ViewBag.Genre = data;
 
-            return View("Products", prod);
+                return View("Products", prod);
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         [Route("SortProduct")]
         public ActionResult SortProduct(FormCollection form)
         {
-
-            string value1 = form["Genre"].ToString();
-            string value2 = form["Author"].ToString();
-
-            var sup = (from supplier in context.Genres select supplier).ToList();
-            var auth = (from author in context.Authors select author).ToList();
-            ViewBag.Auhtor = auth;
-            ViewBag.Genre = sup;
-
-
-            if ((value1 == "") && (value2 == ""))
+            if (Session["name"] != null)
             {
-                var data = (from a in context.Products select a).ToList();
-                return View("Products", data);
-            }
+                string value1 = form["Genre"].ToString();
+                string value2 = form["Author"].ToString();
 
-            if ((value1 != "") && (value2 != ""))
-            {
-                int authint = Convert.ToInt32(value2);
-                int genreint = Convert.ToInt32(value1);
-                var data = (from info in context.Products where info.AuthorId == authint && info.CategoryId == genreint select info).ToList();
-                return View("Products", data);
-            }
+                var sup = (from supplier in context.Genres select supplier).ToList();
+                var auth = (from author in context.Authors select author).ToList();
+                ViewBag.Auhtor = auth;
+                ViewBag.Genre = sup;
 
-            else if ((value1 != "") && (value2 == ""))
-            {
-                int genreint = Convert.ToInt32(value1);
-                var data = (from info in context.Products where info.CategoryId == genreint select info).ToList();
-                return View("Products", data);
-            }
 
+                if ((value1 == "") && (value2 == ""))
+                {
+                    var data = (from a in context.Products select a).ToList();
+                    return View("Products", data);
+                }
+
+                if ((value1 != "") && (value2 != ""))
+                {
+                    int authint = Convert.ToInt32(value2);
+                    int genreint = Convert.ToInt32(value1);
+                    var data = (from info in context.Products where info.AuthorId == authint && info.CategoryId == genreint select info).ToList();
+                    return View("Products", data);
+                }
+
+                else if ((value1 != "") && (value2 == ""))
+                {
+                    int genreint = Convert.ToInt32(value1);
+                    var data = (from info in context.Products where info.CategoryId == genreint select info).ToList();
+                    return View("Products", data);
+                }
+
+                else
+                {
+                    int authint = Convert.ToInt32(value2);
+                    var data = (from info in context.Products where info.AuthorId == authint select info).ToList();
+                    return View("Products", data);
+                }
+            }
             else
             {
-                int authint = Convert.ToInt32(value2);
-                var data = (from info in context.Products where info.AuthorId == authint select info).ToList();
-                return View("Products", data);
+                return View("PageNotAccessable");
             }
         }
 
         [Route("Update")]
         public ActionResult Update(int id)
         {
-            Product prd = (from y in context.Products where y.Id == id select y).First();
-            ViewData["id"] = prd.Id;
-            ViewData["PName"] = prd.ProductName;
-            ViewData["PDescription"] = prd.ProductDescription;
-            ViewData["Pprice"] = prd.ProductPrice;
-            return View();
+            if (Session["name"] != null)
+            {
+                Product prd = (from y in context.Products where y.Id == id select y).First();
+                ViewData["id"] = prd.Id;
+                ViewData["PName"] = prd.ProductName;
+                ViewData["PDescription"] = prd.ProductDescription;
+                ViewData["Pprice"] = prd.ProductPrice;
+                return View();
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         public ActionResult Updated(FormCollection form)
         {
-            int id = Convert.ToInt32(form["id"]);
-            string pName = form["pName"].ToString();
-            string pDes = form["pDes"].ToString();
-            string pPrice = form["pPrice"].ToString();
+            if (Session["name"] != null)
+            {
+                int id = Convert.ToInt32(form["id"]);
+                string pName = form["pName"].ToString();
+                string pDes = form["pDes"].ToString();
+                string pPrice = form["pPrice"].ToString();
 
-            Product prdinfo = new Product() { Id = id, ProductName = pName, ProductDescription = pDes, ProductPrice = pPrice };
-            context.Products.Attach(prdinfo);
-            context.Entry(prdinfo).Property(x => x.ProductName).IsModified = true;
-            context.Entry(prdinfo).Property(x => x.ProductDescription).IsModified = true;
-            context.Entry(prdinfo).Property(x => x.ProductPrice).IsModified = true;
-            context.SaveChanges();
-            return RedirectToAction("Products");
+                Product prdinfo = new Product() { Id = id, ProductName = pName, ProductDescription = pDes, ProductPrice = pPrice };
+                context.Products.Attach(prdinfo);
+                context.Entry(prdinfo).Property(x => x.ProductName).IsModified = true;
+                context.Entry(prdinfo).Property(x => x.ProductDescription).IsModified = true;
+                context.Entry(prdinfo).Property(x => x.ProductPrice).IsModified = true;
+                context.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         [Route("NewProduct")]
         public ActionResult AddNewProduct()
         {
-            var genre = (from supplier in context.Genres select supplier).ToList();
-            var auth = (from author in context.Authors select author).ToList();
-            var supp = (from a in context.Suppliers select a).ToList();
-            ViewBag.Author = auth;
-            ViewBag.Genre = genre;
-            ViewBag.Supplier = supp;
+            if (Session["name"] != null)
+            {
+                var genre = (from supplier in context.Genres select supplier).ToList();
+                var auth = (from author in context.Authors select author).ToList();
+                var supp = (from a in context.Suppliers select a).ToList();
+                ViewBag.Author = auth;
+                ViewBag.Genre = genre;
+                ViewBag.Supplier = supp;
 
-            return View();
+                ViewBag.Message = "";
+                return View();
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
 
-        public ActionResult AddedProduct()
+        public ActionResult AddedProduct(FormCollection form, HttpPostedFileBase file)
         {
-            return View();
+            string name = form["ProductName"];
+            string des = form["ProductDescription"];
+            int supplierid = Convert.ToInt32(form["Supplier"]);
+            int genreid = Convert.ToInt32(form["Genre"]);
+            int authorid = Convert.ToInt32(form["Author"]);
+            string price = form["Price"];
+            var data = (from supplier in context.Genres select supplier).ToList();
+            var auth = (from author in context.Authors select author).ToList();
+            
+
+            var prod = (from a in context.Products select a).ToList();
+            try
+            {
+                string _FileName = "";
+                string _path = "";
+                if (file.ContentLength > 0)
+                {
+                    _FileName = Path.GetFileName(file.FileName);
+                    _path = Path.Combine(Server.MapPath("~/Uploaded_Cover_Image"), _FileName);
+                    file.SaveAs(_path);
+                }
+                Product product = new Product() { ProductName = name, ProductDescription = des, ProductPrice = price, ProductCoverImage = _path, SupplierId = supplierid, AuthorId = authorid, CategoryId = genreid };
+                context.Products.Add(product);
+                context.SaveChanges();
+                
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return RedirectToAction("ViewProducts");
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                ViewBag.Auhtor = auth;
+                ViewBag.Genre = data;
+                return View("ViewProducts", prod);
+            }
         }
 
         [Route("Supplier")]
         public ActionResult ViewSupplier()
         {
-            var supp = (from a in context.Suppliers select a).ToList();
-            return View(supp);
+            if (Session["name"] != null)
+            {
+                var supp = (from a in context.Suppliers select a).ToList();
+                return View(supp);
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         [Route("AddSupplier")]
         public ActionResult AddSupplier()
         {
-            ViewBag.Bool = false;
-            return View();
+            if (Session["name"] != null)
+            {
+                ViewBag.Bool = false;
+                return View();
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         public ActionResult InsertSupplier(FormCollection form)
@@ -252,10 +344,17 @@ namespace Book_Libary.Controllers
         [Route("Genre")]
         public ActionResult ViewGenre()
         {
-            ViewBag.Validation = false;
-            ViewBag.result = false;
-            var genre = (from g in context.Genres select g).ToList();
-            return View(genre);
+            if (Session["name"] != null)
+            {
+                ViewBag.Validation = false;
+                ViewBag.result = false;
+                var genre = (from g in context.Genres select g).ToList();
+                return View(genre);
+            }
+            else
+            {
+                return View("PageNotAccessable");
+            }
         }
 
         public ActionResult AddGenre(FormCollection form)
@@ -270,7 +369,7 @@ namespace Book_Libary.Controllers
                 context.Genres.Add(genre);
                 context.SaveChanges();
                 var genremodal = (from g in context.Genres select g).ToList();
-                return View("ViewGenre",genremodal);
+                return View("ViewGenre", genremodal);
             }
             else
             {
@@ -281,6 +380,28 @@ namespace Book_Libary.Controllers
             }
         }
 
+        public ActionResult UpdateGenre(int id)
+        {
+            Genre gen = (from gg in context.Genres where gg.Id == id select gg).FirstOrDefault();
+            ViewData["id"] = gen.Id;
+            ViewData["GenreType"] = gen.GerneType;
+            ViewData["GenreDes"] = gen.GenreDescription;
+            return View();
+        }
+
+        public ActionResult AfterGenreUpdate(FormCollection form)
+        {
+            int id = Convert.ToInt32(form["Id"]);
+            string name = form["GenreType"];
+            string des = form["SupplierDescription"];
+            Genre gen = new Genre() { Id = id, GerneType = name, GenreDescription = des };
+            context.Genres.Attach(gen);
+            context.Entry(gen).Property(x => x.GerneType).IsModified = true;
+            context.Entry(gen).Property(x => x.GenreDescription).IsModified = true;
+            context.SaveChanges();
+            return View();
+        }
+
         [Route("Author")]
         public ActionResult ViewAuthor()
         {
@@ -288,9 +409,55 @@ namespace Book_Libary.Controllers
             return View(auhtor);
         }
 
+        [Route("AddAdmin")]
+        public ActionResult AddAdmin()
+        {
+            if (Session["_attri"].ToString() == "S")
+            {
+                ViewBag.AdminError = "";
+                return View();
+            }
+            else
+            {
+                return View("AdminWarning");
+            }
+        }
 
+        [Route("CreateAdmin")]
+        public ActionResult AdminDetails(FormCollection form)
+        {
+            string adminid = form["AdminName"];
+            string Adminpass = form["AdminPassword"];
+            string retype = form["Re-Type"];
+            string admintype = form["PermissionType"];
+            if ((adminid != "") || (Adminpass != "") || (retype != "") || (admintype != ""))
+            {
+                if (Adminpass == retype)
+                {
+                    AdminLogin al = new AdminLogin() { AdminId = adminid, AdminPassword = Adminpass, AdminAttributte = admintype };
+                    context.AdminLogins.Add(al);
+                    context.SaveChanges();
+                    ViewBag.AdminError = "Admin Added";
+                    return View("AddAdmin");
+                }
+                else
+                {
+                    ViewBag.AdminError = "Admin not added";
+                    return View("AddAdmin");
+                }
+            }
+            else
+            {
+                ViewBag.AdminError = "Please fill All the field";
+                return View("AddAdmin");
+            }
+        }
 
-
-
+        [Route("Logout")]
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
     }
 }

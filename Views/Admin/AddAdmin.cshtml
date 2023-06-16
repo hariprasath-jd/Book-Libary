@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "AddSupplier";
+    ViewBag.Title = "AddAdmin";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,42 +10,42 @@
     </symbol>
 </svg>
 <div class="no_scroll" style="max-height: 700px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
-    <h2 class="mx-5 my-3">Add Supplier</h2>
+    <h2 class="mx-5 my-3">Add Admin</h2>
     <div class="container col-xl-1 col-xxl-11 px-2 py35">
         <div class="row align-items-center border g-lg-5 p-4  bg-secondary mt-1" style="border-radius:15px;">
-            @using (Html.BeginForm("InsertSupplier", "Admin", FormMethod.Post))
+            @using (Html.BeginForm("CreateAdmin", "Admin", FormMethod.Post))
             {
                 <div class="row ">
                     <div class="col-md-6">
-                        <h4>Product Details</h4>
+                        <h4>Admin Login Details</h4>
                     </div>
                 </div>
 
                 <hr style="width:150px;" />
                 <div class="row g-3">
                     <div class="col-2">
-                        <label class="form-label" for="SupplierName">Supplier Name</label>
+                        <label class="form-label" for="SupplierName">User ID</label>
                     </div>
-                    <div class="col-md-6">
-                        @Html.TextBox("SupplierName", "", new { id = "SupplierName", placeholder = "Publisher Name", Class = "form-control" })
+                    <div class="col-md-3">
+                        @Html.TextBox("AdminName", "", new { id = "AdminName", placeholder = "Admin User Id", Class = "form-control" })
                     </div>
                 </div>
                 <div class="row g-3 mt-3">
                     <div class="col-2">
-                        <label for="Price" class="SupplierEmail">Supplier Email</label>
+                        <label for="Price" class="SupplierEmail">Admin Password</label>
                     </div>
                     <div class="col-md-3">
 
-                        @Html.TextBox("SupplierEmail", "", new { id = "SupplierEmail", Class = "form-control", placeholder = "example@gmail.com" })
+                        @Html.TextBox("AdminPassword", "", new { id = "AdminPassword", Class = "form-control", placeholder = "Password" })
                     </div>
                 </div>
                 <div class="row g-3 mt-3">
                     <div class="col-2">
-                        <label for="Price" class="SupplierMobile">Supplier Mobile no.</label>
+                        <label for="Price" class="SupplierMobile">Re-Enter Password</label>
                     </div>
                     <div class="col-md-3">
 
-                        @Html.TextBox("SupplierMobile", "", new { id = "SupplierMobile", Class = "form-control", placeholder = "eg:- 98466*****" })
+                        @Html.TextBox("Re-Type", "", new { id = "Re-Type", Class = "form-control", placeholder = "Confirm Password" })
                     </div>
                 </div>
                 <div class="row g-3 mt-3">
@@ -53,8 +53,8 @@
                     <div class="col-2">
                         <label class="form-label" for="SupplierDescription">Supplier Description</label>
                     </div>
-                    <div class="col-md-6">
-                        @Html.TextArea("SupplierDescription", "", new { id = "SupplierDescription", placeholder = "eg :- About The Supplier", Class = "form-control", rows = "4" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("PermissionType",new List<SelectListItem> { new SelectListItem { Value = "A", Text = "Normal Admin" }, new SelectListItem {Value="S",Text="Super Admin"} },"Select Permission Type", new {Class="form-select"})
                     </div>
                 </div>
 
@@ -63,6 +63,7 @@
                 <div class="row g-3 mt-2">
 
                     <div class="col-12">
+                        <p>@ViewBag.AdminError</p>
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" style="width:150px;" data-bs-target="#staticBackdrop">
                             Add
                         </button>
@@ -102,43 +103,14 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Save</button>
-                              
+
                             </div>
                         </div>
                     </div>
-                </div> 
-             }
+                </div>
+            }
         </div>
     </div>
-
-    @* Without AJAX(Asynchronous Javascript and XML) Partial load two drop downs
-       @{
-            List<SelectListItem> items = new List<SelectListItem>();
-            List<SelectListItem> items2 = new List<SelectListItem>();
-            string[] itemArray = { "Products", "Index", "Login" };
-            string[] itemArray2 = { "hello", "Add", "There" };
-
-            for (int i = 0; i < itemArray.Count(); i++)
-            {
-                items.Add(new SelectListItem
-                {
-                    Text = itemArray[i],
-                    Value = i.ToString()
-                }
-                );
-
-                items2.Add(new SelectListItem
-                {
-                    Text = itemArray2[i],
-                    Value = i.ToString()
-                }
-                );
-            }
-
-            ViewBag.CategoryID = items;
-            ViewBag.second = items2;
-        }
-        @Html.DropDownList("CategoryId", null, new { @onchange = "document.getElementById('second').value = this.value" })
-        @Html.DropDownList("second", null, new { id="second" })*@
-
 </div>
+
+

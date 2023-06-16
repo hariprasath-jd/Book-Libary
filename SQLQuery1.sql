@@ -12,7 +12,7 @@ select * from Suppliers;
 
 /* Admin Login table tempoary insert data */
 insert into AdminLogins values('hprasath21212@gmail.com','1234','S');
-
+update AdminLogins set AdminId='hp12@gmail.com',AdminPassword='1234',AdminAttributte='A' where id = 2;
 
 /* Genre table tempoary insert data */
 insert into Genres values('Horor','Scary stuff');
@@ -42,6 +42,7 @@ insert into Products values('It Starts With Us','It Starts with Us is a romance 
 insert into Authors values('Colleen Hoover','olleen Hoover is an American author who primarily writes novels in the romance and young adult fiction genres. She is best known for her 2016 romance novel, It Ends with Us. Many of her works were self-published, before being picked up by a publishing house.','https://github.com/mdo.png');
 insert into Authors values('Matt Haig','Matt Haig is an English author and journalist. He has written both fiction and non-fiction books for children and adults, often in the speculative fiction genre.','/assets/img/haig-matt.jpg');
 insert into Authors values('Arundhati Roy','Suzanna Arundhati Roy is an Indian author best known for her novel The God of Small Things, which won the Booker Prize for Fiction in 1997 and became the best-selling book by a non-expatriate Indian author. She is also a political activist involved in human rights and environmental causes','/assets/img/arundhati_roy.jpg');
+insert into Authors values('Edgar Allan Poe','Edgar Allan Poe was an American writer, poet, editor, and literary critic who is best known for his poetry and short stories, particularly his tales of mystery and the macabre. He is widely regarded as a central figure of Romanticism in the United States, and of American literature.','/assets/img/Edgar Allan Poe.jpg');
 
 
 
