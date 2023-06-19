@@ -12,7 +12,7 @@ select * from Suppliers;
 
 /* Admin Login table tempoary insert data */
 insert into AdminLogins values('hprasath21212@gmail.com','1234','S');
-update AdminLogins set AdminId='hp12@gmail.com',AdminPassword='1234',AdminAttributte='A' where id = 2;
+update AdminLogins set AdminId='arun@gmail.com',AdminPassword='1234',AdminAttributte='A' where id = 3;
 
 /* Genre table tempoary insert data */
 insert into Genres values('Horor','Scary stuff');

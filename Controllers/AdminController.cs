@@ -91,7 +91,7 @@ namespace Book_Libary.Controllers
         [Route("ViewProducts")]
         public ActionResult Products()
         {
-            if (Session["name"].ToString() != null)
+            if (Session["name"] != null)
             {
                 var data = (from supplier in context.Genres select supplier).ToList();
                 var auth = (from author in context.Authors select author).ToList();
@@ -392,14 +392,17 @@ namespace Book_Libary.Controllers
         public ActionResult AfterGenreUpdate(FormCollection form)
         {
             int id = Convert.ToInt32(form["Id"]);
-            string name = form["GenreType"];
-            string des = form["SupplierDescription"];
+            string name = form["GenreType"].ToString();
+            string des = form["GenreDes"].ToString();
             Genre gen = new Genre() { Id = id, GerneType = name, GenreDescription = des };
             context.Genres.Attach(gen);
             context.Entry(gen).Property(x => x.GerneType).IsModified = true;
             context.Entry(gen).Property(x => x.GenreDescription).IsModified = true;
             context.SaveChanges();
-            return View();
+            ViewBag.Validation = false;
+            ViewBag.result = true;
+            var genre = (from g in context.Genres select g).ToList();
+            return View("ViewGenre",genre);
         }
 
         [Route("Author")]
@@ -407,6 +410,28 @@ namespace Book_Libary.Controllers
         {
             var auhtor = (from auth in context.Authors select auth).ToList();
             return View(auhtor);
+        }
+
+        [Route("AddAuthor")]
+        public ActionResult AddAuthor()
+        {
+            return View();
+        }
+
+        [Route("InsertAuthor")]
+        public ActionResult InsertAuthor()
+        {
+
+            return View();
+        }
+
+        public ActionResult UpdateAuthor(int id)
+        {
+            Author gen = (from gg in context.Authors where gg.Id == id select gg).FirstOrDefault();
+            ViewData["id"] = gen.Id;
+            ViewData["GenreType"] = gen.AuthorName;
+            ViewData["GenreDes"] = gen.AuthorDescription;
+            return View();
         }
 
         [Route("AddAdmin")]

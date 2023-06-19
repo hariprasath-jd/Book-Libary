@@ -12,31 +12,40 @@
     <h2 class="mx-5 my-3">Add Genre</h2>
     <div class="container col-xl-1 col-xxl-11 px-2 py35">
         <div class="row align-items-center border g-lg-5 p-4  bg-secondary mt-1" style="border-radius:15px;">
-            @using (Html.BeginForm("InsertSupplier", "Admin", FormMethod.Post))
+            @using (Html.BeginForm("AfterGenreUpdate", "Admin", FormMethod.Post))
             {
                 <div class="row ">
                     <div class="col-md-6">
                         <h4>Gene Details</h4>
                     </div>
                 </div>
-
                 <hr style="width:150px;" />
+
                 <div class="row g-3">
                     <div class="col-2">
-                        <label class="form-label" for="SupplierName">Supplier Name</label>
+                        <label class="form-label" for="Id">Id</label>
                     </div>
                     <div class="col-md-6">
-                        @Html.TextBox("SupplierName", "", new { id = "SupplierName", placeholder = "Publisher Name", Class = "form-control" })
+                        @Html.TextBox("Id", ViewData["Id"].ToString(), new { id = "Id", Readonly=true, Class = "form-control" })
                     </div>
                 </div>
-                
+
+                <div class="row g-3 mt-3">
+                    <div class="col-2">
+                        <label class="form-label" for="GenreType">Genre Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBox("GenreType", ViewData["GenreType"].ToString(), new { id = "GenreType", placeholder = "Publisher Name", Class = "form-control" })
+                    </div>
+                </div>
+
                 <div class="row g-3 mt-3">
                     <br />
                     <div class="col-2">
-                        <label class="form-label" for="SupplierDescription">Supplier Description</label>
+                        <label class="form-label" for="GenreDes">Genre Description</label>
                     </div>
                     <div class="col-md-6">
-                        @Html.TextArea("SupplierDescription", "", new { id = "SupplierDescription", placeholder = "eg :- About The Supplier", Class = "form-control", rows = "4" })
+                        @Html.TextArea("GenreDes", ViewData["GenreDes"].ToString(), new { id = "GenreDes", placeholder = "eg :- About The Supplier", Class = "form-control", rows = "4" })
                     </div>
                 </div>
 
