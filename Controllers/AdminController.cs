@@ -235,13 +235,17 @@ namespace Book_Libary.Controllers
             {
                 string _FileName = "";
                 string _path = "";
+                
                 if (file.ContentLength > 0)
                 {
                     _FileName = Path.GetFileName(file.FileName);
                     _path = Path.Combine(Server.MapPath("~/Uploaded_Cover_Image"), _FileName);
                     file.SaveAs(_path);
+
+
                 }
-                Product product = new Product() { ProductName = name, ProductDescription = des, ProductPrice = price, ProductCoverImage = _path, SupplierId = supplierid, AuthorId = authorid, CategoryId = genreid };
+                string img_path = "/Uploaded_Cover_Image"+_FileName;   
+                Product product = new Product() { ProductName = name, ProductDescription = des, ProductPrice = price, ProductCoverImage = img_path, SupplierId = supplierid, AuthorId = authorid, CategoryId = genreid };
                 context.Products.Add(product);
                 context.SaveChanges();
                 
@@ -403,8 +407,7 @@ namespace Book_Libary.Controllers
             ViewBag.result = true;
             var genre = (from g in context.Genres select g).ToList();
             return View("ViewGenre",genre);
-        }
-
+        }     
         [Route("Author")]
         public ActionResult ViewAuthor()
         {

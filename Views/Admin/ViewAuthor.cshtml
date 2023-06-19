@@ -14,6 +14,7 @@
                     <th scope="col">Author Id</th>
                     <th scope="col">Author Name</th>
                     <th scope="col">Author Description</th>
+                    <th scope="col">Author Image</th>
                     <th scope="col">Author Action</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                         <td scope="col">@i.Id</td>
                         <td>@i.AuthorName</td>
                         <td style="width:40%;">@i.AuthorDescription</td>
+                        <td><img src=@i.AuthorImage.ToString() @*width="150" height="100"*@ style="width:150px;aspect-ratio:3/2;object-fit:contain;" alt="Author Image" /></td>
                         <td>
                             @Html.ActionLink("Update", "UpdateSupplier", new { Id = i.Id })  ||
                             @Html.ActionLink("Delete", "DeleteId", new { Id = i.Id })

@@ -14,7 +14,7 @@
 </style>
 
 
-<div class="no_scroll" style="height:max-content;max-height: 670px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
+<div class="no_scroll" style="height:max-content;max-height: 700px; overflow: scroll; overflow-x: hidden; width: 100%; scroll-behavior: smooth; overflow-y: scroll; -ms-overflow-style: none;">
 
     <div class="border rounded m-1" style="box-shadow: 0px 0px 8px 0px black">
         <h2 class="mx-5 mt-3">All Product</h2>
@@ -49,6 +49,7 @@
                         <th scope="col">Product Id</th>
                         <th scope="col">Product Type</th>
                         <th scope="col">Product Description</th>
+                        <th scope="col">Product Cover Image</th>
                         <th scope="col">Product Price</th>
                         <th scope="col">Product Action</th>
                     </tr>
@@ -60,6 +61,7 @@
                                 <td scope="col">@i.Id</td>
                                 <td>@i.ProductName</td>
                                 <td class="def">@i.ProductDescription</td>
+                                <td><img src="@i.ProductCoverImage" style="width:200px;height:133.33px;aspect-ratio:3/2;object-fit:contain;" class="mx-auto" alt="Product cover image" /></td>
                                 <td>@i.ProductPrice</td>
                                 <td>
                                     @Html.ActionLink("Update", "Update", new { Id = i.Id } )  ||
