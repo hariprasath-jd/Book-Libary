@@ -1,6 +1,6 @@
 # Book Library Web Site (ASP.NET MVC with Entity Framework)
 
-![Book Library](https://your-website-url.com/assets/images/book-library-screenshot.png)
+![Book Library](https://your-website-url.com/assets/img/book-library-screenshot.png)
 
 This is a web application for managing a book library. Users can browse through a collection of books, search for specific titles or authors, and even borrow or reserve books.
 
