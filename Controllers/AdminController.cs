@@ -1,15 +1,10 @@
 ﻿using Book_Libary.Models.Admin;
 using Book_Libary.Models.Inventory;
 using System;
-using System.Data.Entity.Infrastructure;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
-using System.Xml.Linq;
 
 namespace Book_Libary.Controllers
 {
@@ -238,8 +233,8 @@ namespace Book_Libary.Controllers
                 
                 if (file.ContentLength > 0)
                 {
-                    _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploaded_Cover_Image"), _FileName);
+                    _FileName = Path.GetFileName(file.FileName); 
+                    _path = Path.Combine(Server.MapPath("~/Uploaded_Cover_Image/Product"), _FileName);
                     file.SaveAs(_path);
 
 
@@ -421,11 +416,30 @@ namespace Book_Libary.Controllers
             return View();
         }
 
+        [HttpPost]
         [Route("InsertAuthor")]
-        public ActionResult InsertAuthor()
+        public String InsertAuthor()
         {
+            string authorName = Request.Form["AuthorName"];
+            string authorDescription = Request.Form["AuthorDescription"];
+            var file = Request.Files["AuthorImage"];
+            string _FileName = "";
+            string _path = "";
 
-            return View();
+            if (file.ContentLength > 0)
+            {
+                _FileName = Path.GetFileName(file.FileName);
+                _path = Path.Combine(Server.MapPath("~/Uploaded_Cover_Image/Author/"), _FileName);
+                file.SaveAs(_path);
+            }
+            
+            string img_path = "/Uploaded_Cover_Image/Author/" + _FileName;
+            Author auth = new Author() { AuthorName = authorName, AuthorDescription = authorDescription, AuthorImage = img_path };
+            context.Authors.Add(auth);
+            context.SaveChanges();
+
+            ViewBag.Message = "File Uploaded Successfully!!";
+            return "pass";
         }
 
         public ActionResult UpdateAuthor(int id)
@@ -489,3 +503,4 @@ namespace Book_Libary.Controllers
         }
     }
 }
+  

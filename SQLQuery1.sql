@@ -36,7 +36,7 @@ insert into Products values('It Starts With Us','It Starts with Us is a romance 
 insert into Products values('It Starts With Us','It Starts with Us is a romance novel by Colleen Hoover, published by Atria Books on October 18, 2022. It is the sequel to her 2016 best-selling novel It Ends with Us. The sequel was first announced in February 2022. It became Simon & Schusters most pre-ordered book of all time. Hoover wrote the novel as a "thank you" to fans of the first novel.','620','/assets/img/b2.jpg',1,2,1);
 insert into Products values('It Starts With Us','It Starts with Us is a romance novel by Colleen Hoover, published by Atria Books on October 18, 2022. It is the sequel to her 2016 best-selling novel It Ends with Us. The sequel was first announced in February 2022. It became Simon & Schusters most pre-ordered book of all time. Hoover wrote the novel as a "thank you" to fans of the first novel.','620','/assets/img/b2.jpg',1,2,1);
 
-update Products set ProductCoverImage = '/Uploaded_Cover_Image/book1.jpg' where id = 1003;
+update Products set ProductCoverImage = '/assets/img/b2.jpg' where id = 1;
 update Products set ProductCoverImage = 'C:\\Users\\hpras\\OneDrive\\Lab Pc\\DotNET\\Applications\\Book Libary\\Uploaded_Cover_Image\\book1.jpg' where id = 1003;
 
 
@@ -46,7 +46,9 @@ insert into Authors values('Matt Haig','Matt Haig is an English author and journ
 insert into Authors values('Arundhati Roy','Suzanna Arundhati Roy is an Indian author best known for her novel The God of Small Things, which won the Booker Prize for Fiction in 1997 and became the best-selling book by a non-expatriate Indian author. She is also a political activist involved in human rights and environmental causes','/assets/img/arundhati_roy.jpg');
 insert into Authors values('Edgar Allan Poe','Edgar Allan Poe was an American writer, poet, editor, and literary critic who is best known for his poetry and short stories, particularly his tales of mystery and the macabre. He is widely regarded as a central figure of Romanticism in the United States, and of American literature.','/assets/img/Edgar Allan Poe.jpg');
 
-update Authors set AuthorImage='/assets/img/Edgar_Allan_Poe.jpg' where Id=1003;
+update Authors set AuthorImage='/Uploaded_Cover_Image/Author/a7.jpg' where Id=1004;
+
+delete from Authors where Id=1007 or Id=1008 or Id=1009 or Id=1010 or Id=1011 or Id=1012 ;
 
 /* Supplier table tempoary insert data */
 insert into Suppliers values('Colleen Hoover','7855487541','collenhover@gmail.com','self shiping and other details');

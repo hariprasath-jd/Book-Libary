@@ -240,6 +240,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminNotificationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -300,6 +301,7 @@
     <Content Include="Views\Admin\PageNotAccessable.cshtml" />
     <Content Include="Views\Admin\UpdateGenre.cshtml" />
     <Content Include="Views\Admin\AddAuthor.cshtml" />
+    <Content Include="Views\AdminNotification\SendNotification.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -311,7 +313,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\Order\" />
     <Folder Include="Models\Payment\" />
-    <Folder Include="Uploaded_Cover_Image\" />
+    <Folder Include="Uploaded_Cover_Image\Author\" />
+    <Folder Include="Uploaded_Cover_Image\Product\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -35,6 +35,10 @@ namespace Book_Libary.Models
         public DbSet<Author> Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
 
+        //Get: Order Table
+
+        //Get: Payment Table
+
 
         protected override void OnModelCreating(DbModelBuilder dbModel)
         {
