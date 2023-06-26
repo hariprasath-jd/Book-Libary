@@ -241,6 +241,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminNotificationController.cs" />
+    <Compile Include="Controllers\AdminPermissionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -302,6 +303,7 @@
     <Content Include="Views\Admin\UpdateGenre.cshtml" />
     <Content Include="Views\Admin\AddAuthor.cshtml" />
     <Content Include="Views\AdminNotification\SendNotification.cshtml" />
+    <Content Include="Views\AdminPermission\AdminLoginPermission.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
